@@ -43,7 +43,7 @@ module.exports = NodeHelper.create({
 
     getData: function(options, stopID) {
 		request(options, (error, response, body) => {
-	        if (response.statusCode === 200) {
+	        if (!error && response.statusCode === 200) {
 				this.sendSocketNotification("TRAMS" + stopID, JSON.parse(body));
 				} else {
                 console.log("Error getting tram connections " + response.statusCode);
